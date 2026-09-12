@@ -8,7 +8,6 @@ import requests
 import feedparser
 from bs4 import BeautifulSoup
 
-# Target Role Regex
 KEYWORDS_REGEX = re.compile(
     r'\b(project manager|service delivery|delivery manager|scrum master|technical project manager)\b',
     re.IGNORECASE
@@ -25,45 +24,48 @@ def is_recent(dt):
         return True
     return dt >= CUTOFF_DATE
 
-# --- 1. WE WORK REMOTELY ---
 def fetch_weworkremotely():
     jobs = []
     feeds = [
         "https://weworkremotely.com/categories/remote-product-jobs.rss",
         "https://weworkremotely.com/categories/remote-management-and-finance-jobs.rss"
     ]
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
     for url in feeds:
-        parsed = feedparser.parse(url)
-        for entry in parsed.entries:
-            pub_date = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc) if hasattr(entry, 'published_parsed') else None
-            if pub_date and not is_recent(pub_date):
-                continue
-            
-            title = entry.get('title', '')
-            company = "WeWorkRemotely Employer"
-            if " is hiring a " in title:
-                parts = title.split(" is hiring a ")
-                company = parts[0].strip()
-                title = parts[1].strip()
+        try:
+            res = requests.get(url, headers=headers, timeout=10)
+            parsed = feedparser.parse(res.content)
+            for entry in parsed.entries:
+                pub_date = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc) if hasattr(entry, 'published_parsed') else None
+                if pub_date and not is_recent(pub_date):
+                    continue
+                
+                title = entry.get('title', '')
+                company = "WeWorkRemotely Employer"
+                if " is hiring a " in title:
+                    parts = title.split(" is hiring a ")
+                    company = parts[0].strip()
+                    title = parts[1].strip()
 
-            if KEYWORDS_REGEX.search(title):
-                jobs.append({
-                    "id": generate_job_id(title, company),
-                    "title": title,
-                    "company": company,
-                    "location": "Remote",
-                    "source": "We Work Remotely",
-                    "url": entry.get('link', ''),
-                    "posted_date": pub_date.strftime('%Y-%m-%d') if pub_date else "Recently",
-                    "snippet": BeautifulSoup(entry.get('summary', ''), 'html.parser').text[:250] + '...'
-                })
+                if KEYWORDS_REGEX.search(title):
+                    jobs.append({
+                        "id": generate_job_id(title, company),
+                        "title": title,
+                        "company": company,
+                        "location": "Remote",
+                        "source": "We Work Remotely",
+                        "url": entry.get('link', ''),
+                        "posted_date": pub_date.strftime('%Y-%m-%d') if pub_date else "Recently",
+                        "snippet": BeautifulSoup(entry.get('summary', ''), 'html.parser').text[:250] + '...'
+                    })
+        except Exception as e:
+            print(f"Error fetching WWR: {e}")
     return jobs
 
-# --- 2. HIMALAYAS ---
 def fetch_himalayas():
     jobs = []
     url = "https://himalayas.app/jobs/api?limit=100"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
     try:
         res = requests.get(url, headers=headers, timeout=10)
         if res.status_code == 200:
@@ -91,16 +93,17 @@ def fetch_himalayas():
         print(f"Error fetching Himalayas: {e}")
     return jobs
 
-# --- 3. REMOTE OK ---
 def fetch_remoteok():
     jobs = []
     url = "https://remoteok.com/api"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
     try:
         res = requests.get(url, headers=headers, timeout=10)
         if res.status_code == 200:
             data = res.json()
             for item in data[1:]:
+                if not isinstance(item, dict):
+                    continue
                 title = item.get('position', '')
                 date_str = item.get('date')
                 pub_date = datetime.fromisoformat(date_str.replace('Z', '+00:00')) if date_str else None
@@ -123,93 +126,25 @@ def fetch_remoteok():
         print(f"Error fetching Remote OK: {e}")
     return jobs
 
-# --- 4. FLEXJOBS ---
-def fetch_flexjobs():
-    jobs = []
-    feed_url = "https://www.flexjobs.com/rss/job/project-management"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    try:
-        res = requests.get(feed_url, headers=headers, timeout=10)
-        parsed = feedparser.parse(res.content)
-        for entry in parsed.entries:
-            pub_date = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc) if hasattr(entry, 'published_parsed') else None
-            if pub_date and not is_recent(pub_date):
-                continue
-
-            title = entry.get('title', '')
-            if KEYWORDS_REGEX.search(title):
-                jobs.append({
-                    "id": generate_job_id(title, "FlexJobs Employer"),
-                    "title": title,
-                    "company": "FlexJobs Listed Employer",
-                    "location": "Remote 100%",
-                    "source": "FlexJobs",
-                    "url": entry.get('link', ''),
-                    "posted_date": pub_date.strftime('%Y-%m-%d') if pub_date else "Recently",
-                    "snippet": BeautifulSoup(entry.get('summary', ''), 'html.parser').text[:250] + '...'
-                })
-    except Exception as e:
-        print(f"Error fetching FlexJobs: {e}")
-    return jobs
-
-# --- 5. LINKEDIN REMOTE ---
-def fetch_linkedin_remote():
-    jobs = []
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    queries = ["IT Project Manager", "Project Manager", "Service Delivery Manager"]
-    
-    for query in queries:
-        url = f"https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={urllib.parse.quote(query)}&f_WT=2&f_TPR=r604800&start=0"
-        try:
-            res = requests.get(url, headers=headers, timeout=10)
-            if res.status_code == 200:
-                soup = BeautifulSoup(res.text, 'html.parser')
-                cards = soup.find_all('li')
-                for card in cards:
-                    title_elem = card.find('h3', class_='base-search-card__title')
-                    company_elem = card.find('h4', class_='base-search-card__subtitle')
-                    link_elem = card.find('a', class_='base-card__full-link')
-
-                    if title_elem and link_elem:
-                        title = title_elem.text.strip()
-                        company = company_elem.text.strip() if company_elem else "LinkedIn Listing"
-                        link = link_elem['href'].split('?')[0]
-
-                        if KEYWORDS_REGEX.search(title):
-                            jobs.append({
-                                "id": generate_job_id(title, company),
-                                "title": title,
-                                "company": company,
-                                "location": "Remote",
-                                "source": "LinkedIn",
-                                "url": link,
-                                "posted_date": datetime.now(timezone.utc).strftime('%Y-%m-%d'),
-                                "snippet": f"Remote position for {title} at {company} available on LinkedIn."
-                            })
-        except Exception as e:
-            print(f"Error fetching LinkedIn for query '{query}': {e}")
-            
-    return jobs
-
-# --- DISCORD ALERT ENGINE ---
 def send_discord_alerts(jobs):
     webhook_url = os.environ.get('DISCORD_WEBHOOK_URL')
     if not webhook_url:
-        print("DISCORD_WEBHOOK_URL environment variable is missing. Skipping Discord dispatch.")
+        print("CRITICAL: DISCORD_WEBHOOK_URL is missing from environment secrets.")
         return
+
+    print(f"Sending alerts to Discord webhook (Found {len(jobs)} jobs)...")
 
     if not jobs:
-        requests.post(webhook_url, json={"content": "ℹ️ **Remote Job Hub**: No new matching positions found in the last 7 days."})
+        res = requests.post(webhook_url, json={"content": "ℹ️ **Remote Job Hub**: Scraper ran successfully, but no matching PM/Service Delivery jobs were found in the last 7 days."})
+        print(f"Discord response: {res.status_code}")
         return
 
-    # Header message
     requests.post(webhook_url, json={
-        "content": f"🚀 **Weekly Remote PM Alert**: Found **{len(jobs)}** new positions posted in the last 7 days!"
+        "content": f"🚀 **Weekly Remote PM Alert**: Found **{len(jobs)}** positions posted in the last 7 days!"
     })
 
-    # Discord permits max 10 embeds per payload
     chunk_size = 10
-    top_jobs = jobs[:30] # Cap alert batch size
+    top_jobs = jobs[:20]
     
     for i in range(0, len(top_jobs), chunk_size):
         chunk = top_jobs[i:i + chunk_size]
@@ -220,7 +155,7 @@ def send_discord_alerts(jobs):
                 "url": j['url'],
                 "color": 5814783,
                 "fields": [
-                    {"name": "Company", "value": j['company'], "inline": True},
+                    {"name": "Company", "value": j['company'] or "N/A", "inline": True},
                     {"name": "Source", "value": j['source'], "inline": True},
                     {"name": "Location", "value": j['location'], "inline": True}
                 ],
@@ -228,34 +163,28 @@ def send_discord_alerts(jobs):
             })
         
         res = requests.post(webhook_url, json={"embeds": embeds})
-        if res.status_code not in [200, 204]:
-            print(f"Error posting to Discord: {res.status_code} - {res.text}")
+        print(f"Batch {i//chunk_size + 1} sent to Discord. Status: {res.status_code}")
 
 def main():
-    print("Fetching remote jobs from target sources...")
+    print("Starting job collection...")
     all_jobs = []
     
     all_jobs.extend(fetch_weworkremotely())
     all_jobs.extend(fetch_himalayas())
     all_jobs.extend(fetch_remoteok())
-    all_jobs.extend(fetch_flexjobs())
-    all_jobs.extend(fetch_linkedin_remote())
 
-    # Deduplicate by unique hash
     deduped = {}
     for j in all_jobs:
         if j["id"] not in deduped:
             deduped[j["id"]] = j
 
     final_jobs = list(deduped.values())
-    print(f"Successfully aggregated {len(final_jobs)} remote jobs.")
+    print(f"Collected {len(final_jobs)} jobs.")
 
-    # Save payload for frontend builder
     os.makedirs('data', exist_ok=True)
     with open('data/jobs.json', 'w', encoding='utf-8') as f:
         json.dump(final_jobs, f, indent=2)
 
-    # Dispatch Discord alert
     send_discord_alerts(final_jobs)
 
 if __name__ == "__main__":
