@@ -7,13 +7,11 @@ import requests
 import feedparser
 from bs4 import BeautifulSoup
 
-# Expanded regex covering Project, Delivery, Scrum, Agile, and Implementation management
 KEYWORDS_REGEX = re.compile(
-    r'\b(project manager|project lead|program manager|delivery manager|service delivery|service manager|scrum master|agile coach|pmo|implementation manager|operations manager|technical manager|it manager)\b',
+    r'\b(project|program|delivery|service delivery|scrum|agile|pmo|implementation|operations|it manager|technical manager)\b',
     re.IGNORECASE
 )
 
-# 30-day lookback window
 CUTOFF_DATE = datetime.now(timezone.utc) - timedelta(days=30)
 
 def generate_job_id(title, company):
@@ -25,14 +23,77 @@ def is_recent(dt):
         return True
     return dt >= CUTOFF_DATE
 
+def fetch_remotive():
+    jobs = []
+    url = "https://remotive.com/api/remote-jobs?category=project-management"
+    headers = {"User-Agent": "Mozilla/5.0"}
+    try:
+        res = requests.get(url, headers=headers, timeout=12)
+        if res.status_code == 200:
+            data = res.json().get('jobs', [])
+            for item in data:
+                title = item.get('title', '')
+                date_str = item.get('publication_date')
+                pub_date = datetime.fromisoformat(date_str) if date_str else None
+
+                if pub_date and not is_recent(pub_date):
+                    continue
+
+                if KEYWORDS_REGEX.search(title):
+                    jobs.append({
+                        "id": generate_job_id(title, item.get('company_name', 'Remotive')),
+                        "title": title,
+                        "company": item.get('company_name', 'Remotive'),
+                        "location": item.get('candidate_required_location', 'Remote'),
+                        "source": "Remotive",
+                        "url": item.get('url', ''),
+                        "posted_date": pub_date.strftime('%Y-%m-%d') if pub_date else "Recently",
+                        "snippet": BeautifulSoup(item.get('description', ''), 'html.parser').text[:250] + '...'
+                    })
+    except Exception as e:
+        print(f"[Remotive Error] {e}")
+    print(f"-> Remotive matched: {len(jobs)} jobs")
+    return jobs
+
+def fetch_jobicy():
+    jobs = []
+    url = "https://jobicy.com/api/v2/remote-jobs?count=50&industry=supporting"
+    headers = {"User-Agent": "Mozilla/5.0"}
+    try:
+        res = requests.get(url, headers=headers, timeout=12)
+        if res.status_code == 200:
+            data = res.json().get('jobs', [])
+            for item in data:
+                title = item.get('jobTitle', '')
+                date_str = item.get('pubDate')
+                pub_date = datetime.fromisoformat(date_str.replace(' ', 'T')) if date_str else None
+
+                if pub_date and not is_recent(pub_date):
+                    continue
+
+                if KEYWORDS_REGEX.search(title):
+                    jobs.append({
+                        "id": generate_job_id(title, item.get('companyName', 'Jobicy')),
+                        "title": title,
+                        "company": item.get('companyName', 'Jobicy'),
+                        "location": item.get('jobGeo', 'Remote'),
+                        "source": "Jobicy",
+                        "url": item.get('url', ''),
+                        "posted_date": pub_date.strftime('%Y-%m-%d') if pub_date else "Recently",
+                        "snippet": BeautifulSoup(item.get('jobExcerpt', ''), 'html.parser').text[:250] + '...'
+                    })
+    except Exception as e:
+        print(f"[Jobicy Error] {e}")
+    print(f"-> Jobicy matched: {len(jobs)} jobs")
+    return jobs
+
 def fetch_weworkremotely():
     jobs = []
     feeds = [
         "https://weworkremotely.com/categories/remote-product-jobs.rss",
-        "https://weworkremotely.com/categories/remote-management-and-finance-jobs.rss",
-        "https://weworkremotely.com/categories/remote-full-stack-programming-jobs.rss"
+        "https://weworkremotely.com/categories/remote-management-and-finance-jobs.rss"
     ]
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    headers = {"User-Agent": "Mozilla/5.0"}
     for url in feeds:
         try:
             res = requests.get(url, headers=headers, timeout=12)
@@ -65,41 +126,10 @@ def fetch_weworkremotely():
     print(f"-> WeWorkRemotely matched: {len(jobs)} jobs")
     return jobs
 
-def fetch_himalayas():
-    jobs = []
-    url = "https://himalayas.app/jobs/rss"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    try:
-        res = requests.get(url, headers=headers, timeout=12)
-        parsed = feedparser.parse(res.content)
-        for entry in parsed.entries:
-            pub_date = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc) if hasattr(entry, 'published_parsed') else None
-            if pub_date and not is_recent(pub_date):
-                continue
-
-            title = entry.get('title', '')
-            company = entry.get('author', 'Himalayas')
-
-            if KEYWORDS_REGEX.search(title) or KEYWORDS_REGEX.search(entry.get('summary', '')):
-                jobs.append({
-                    "id": generate_job_id(title, company),
-                    "title": title,
-                    "company": company,
-                    "location": "Remote",
-                    "source": "Himalayas",
-                    "url": entry.get('link', ''),
-                    "posted_date": pub_date.strftime('%Y-%m-%d') if pub_date else "Recently",
-                    "snippet": BeautifulSoup(entry.get('summary', ''), 'html.parser').text[:250] + '...'
-                })
-    except Exception as e:
-        print(f"[Himalayas Error] {e}")
-    print(f"-> Himalayas matched: {len(jobs)} jobs")
-    return jobs
-
 def fetch_remoteok():
     jobs = []
     url = "https://remoteok.com/api"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    headers = {"User-Agent": "Mozilla/5.0"}
     try:
         res = requests.get(url, headers=headers, timeout=12)
         if res.status_code == 200:
@@ -133,37 +163,6 @@ def fetch_remoteok():
     print(f"-> RemoteOK matched: {len(jobs)} jobs")
     return jobs
 
-def fetch_jobspresso():
-    jobs = []
-    url = "https://jobspresso.co/category/project-management/feed/"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    try:
-        res = requests.get(url, headers=headers, timeout=12)
-        parsed = feedparser.parse(res.content)
-        for entry in parsed.entries:
-            pub_date = datetime(*entry.published_parsed[:6], tzinfo=timezone.utc) if hasattr(entry, 'published_parsed') else None
-            if pub_date and not is_recent(pub_date):
-                continue
-
-            title = entry.get('title', '')
-            company = "Jobspresso Employer"
-
-            if KEYWORDS_REGEX.search(title):
-                jobs.append({
-                    "id": generate_job_id(title, company),
-                    "title": title,
-                    "company": company,
-                    "location": "Remote",
-                    "source": "Jobspresso",
-                    "url": entry.get('link', ''),
-                    "posted_date": pub_date.strftime('%Y-%m-%d') if pub_date else "Recently",
-                    "snippet": BeautifulSoup(entry.get('summary', ''), 'html.parser').text[:250] + '...'
-                })
-    except Exception as e:
-        print(f"[Jobspresso Error] {e}")
-    print(f"-> Jobspresso matched: {len(jobs)} jobs")
-    return jobs
-
 def send_discord_alerts(jobs):
     webhook_url = os.environ.get('DISCORD_WEBHOOK_URL')
     if not webhook_url:
@@ -171,15 +170,15 @@ def send_discord_alerts(jobs):
         return
 
     if not jobs:
-        requests.post(webhook_url, json={"content": "ℹ️ **Remote Job Hub**: No matching jobs found in the last 30 days."})
+        requests.post(webhook_url, json={"content": "ℹ️ **Remote Job Hub**: No matching jobs found."})
         return
 
     requests.post(webhook_url, json={
-        "content": f"🚀 **Remote PM Alert**: Found **{len(jobs)}** matching positions in the last 30 days!"
+        "content": f"🚀 **Remote PM Alert**: Found **{len(jobs)}** positions across sources!"
     })
 
     chunk_size = 10
-    top_jobs = jobs[:30] # Limit Discord output to top 30 to prevent payload limits
+    top_jobs = jobs[:30]
     
     for i in range(0, len(top_jobs), chunk_size):
         chunk = top_jobs[i:i + chunk_size]
@@ -200,13 +199,13 @@ def send_discord_alerts(jobs):
         requests.post(webhook_url, json={"embeds": embeds})
 
 def main():
-    print("Starting job collection across sources...")
+    print("Starting job collection across expanded sources...")
     all_jobs = []
     
+    all_jobs.extend(fetch_remotive())
+    all_jobs.extend(fetch_jobicy())
     all_jobs.extend(fetch_weworkremotely())
-    all_jobs.extend(fetch_himalayas())
     all_jobs.extend(fetch_remoteok())
-    all_jobs.extend(fetch_jobspresso())
 
     deduped = {}
     for j in all_jobs:
