@@ -13,7 +13,7 @@ KEYWORDS_REGEX = re.compile(
     re.IGNORECASE
 )
 
-CUTOFF_DATE = datetime.now(timezone.utc) - timedelta(days=7)
+CUTOFF_DATE = datetime.now(timezone.utc) - timedelta(days=10)
 
 def generate_job_id(title, company):
     clean = re.sub(r'[^a-zA-Z0-9]', '', f"{title.lower()}_{company.lower()}")
@@ -140,7 +140,7 @@ def send_discord_alerts(jobs):
         return
 
     requests.post(webhook_url, json={
-        "content": f"🚀 **Weekly Remote PM Alert**: Found **{len(jobs)}** positions posted in the last 7 days!"
+        "content": f"🚀 **Weekly Remote PM Alert**: Found **{len(jobs)}** positions posted in the last 10 days!"
     })
 
     chunk_size = 10
