@@ -9,11 +9,11 @@ import feedparser
 from bs4 import BeautifulSoup
 
 KEYWORDS_REGEX = re.compile(
-    r'\b(project manager|service delivery|delivery manager|scrum master|technical project manager)\b',
+    r'\b(project|program|delivery|service delivery|scrum|agile|pmo|it manager)\b',
     re.IGNORECASE
 )
 
-CUTOFF_DATE = datetime.now(timezone.utc) - timedelta(days=10)
+CUTOFF_DATE = datetime.now(timezone.utc) - timedelta(days=30)
 
 def generate_job_id(title, company):
     clean = re.sub(r'[^a-zA-Z0-9]', '', f"{title.lower()}_{company.lower()}")
@@ -135,12 +135,12 @@ def send_discord_alerts(jobs):
     print(f"Sending alerts to Discord webhook (Found {len(jobs)} jobs)...")
 
     if not jobs:
-        res = requests.post(webhook_url, json={"content": "ℹ️ **Remote Job Hub**: Scraper ran successfully, but no matching PM/Service Delivery jobs were found in the last 7 days."})
+        res = requests.post(webhook_url, json={"content": "ℹ️ **Remote Job Hub**: Scraper ran successfully, but no matching PM/Service Delivery jobs were found in the last 30 days."})
         print(f"Discord response: {res.status_code}")
         return
 
     requests.post(webhook_url, json={
-        "content": f"🚀 **Weekly Remote PM Alert**: Found **{len(jobs)}** positions posted in the last 10 days!"
+        "content": f"🚀 **Weekly Remote PM Alert**: Found **{len(jobs)}** positions posted in the last 30 days!"
     })
 
     chunk_size = 10
