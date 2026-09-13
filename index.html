@@ -82,17 +82,18 @@
             return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        async function checkPassword() {
-            const input = document.getElementById('passInput').value;
-            const hashedInput = await hashPassword(input);
-            if (hashedInput === TARGET_HASH) {
-                document.getElementById('login-overlay').classList.add('hidden');
-                document.getElementById('dashboard').classList.remove('hidden');
-                loadJobs();
-            } else {
-                document.getElementById('errorMsg').style.display = 'block';
-            }
-        }
+ function checkPassword() {
+    const input = document.getElementById('passInput').value;
+
+    // Set your plain-text password here directly
+    if (input === 'admin') {
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        loadJobs();
+    } else {
+        document.getElementById('errorMsg').style.display = 'block';
+    }
+}
 
         async function loadJobs() {
             try {
