@@ -1,0 +1,40 @@
+name: Aggregate PM Jobs & Deploy Pages
+
+on:
+  schedule:
+    - cron: '0 8 * * 1' # Automates run every Monday at 8:00 AM UTC
+  workflow_dispatch: # Allows manual trigger button in GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python Environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python Dependencies
+        run: |
+          pip install requests pandas beautifulsoup4 scikit-learn
+
+      - name: Run Scraping & Deduplication Script
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python aggregate_jobs.py
+
+      - name: Stage Web Files to Dist
+        run: |
+          cp index.html dist/index.html
+
+      - name: Deploy Output to GitHub Pages Branch
+        uses: PeaceIris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
