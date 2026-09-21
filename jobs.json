@@ -1,17 +1,26 @@
 {
     "metadata": {
-        "last_run": "2026-09-14 14:38:53 UTC",
-        "total_jobs": 39
+        "last_run": "2026-09-21 14:45:57 UTC",
+        "total_jobs": 40
     },
     "jobs": [
+        {
+            "title": "Certified Scrum Master",
+            "company": "Lids",
+            "source": "LinkedIn",
+            "mode": "Remote",
+            "location": "Indianapolis, IN",
+            "link": "https://www.linkedin.com/jobs/view/certified-scrum-master-at-lids-4467569880?position=1&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=SIWfKKKjapR2iiif2S3KoA%3D%3D",
+            "date": "2026-09-21"
+        },
         {
             "title": "Scrum Master",
             "company": "Booz Allen Hamilton",
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Washington, DC",
-            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-booz-allen-hamilton-4455357596?position=1&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=GMKMokJWLZS%2FirCnYJItSQ%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-booz-allen-hamilton-4455357596?position=2&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=2M0QYJgBbCQR22lNvN762Q%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Scrum Master",
@@ -19,8 +28,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Atlanta Metropolitan Area",
-            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-dla-piper-4453334878?position=2&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=QEjK9amHT%2B5gVdfp8dylpA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-dla-piper-4453334878?position=3&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=yI4wFpZW5%2B%2F9cIRGy6g9bQ%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Scrum Master",
@@ -28,8 +37,17 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Raleigh, NC",
-            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-dla-piper-4453349032?position=3&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=baRhogqaG7OH%2FtiSeeJ9lQ%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-dla-piper-4453349032?position=4&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=0vYIkJ6rvvnPlqCITbIgFw%3D%3D",
+            "date": "2026-09-21"
+        },
+        {
+            "title": "Agile Scrum Master",
+            "company": "Leidos",
+            "source": "LinkedIn",
+            "mode": "Remote",
+            "location": "Washington, DC",
+            "link": "https://www.linkedin.com/jobs/view/agile-scrum-master-at-leidos-4466219121?position=5&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=U8QwpyRTK%2F6AmFmzJiUEpA%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Agile Delivery & Coaching--Scrum Master",
@@ -37,8 +55,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Charlotte, NC",
-            "link": "https://www.linkedin.com/jobs/view/agile-delivery-coaching-scrum-master-at-truist-4465321153?position=4&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=IrswayOnXfBEuDLfdsU05Q%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/agile-delivery-coaching-scrum-master-at-truist-4465321153?position=6&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=oS1sf%2B6gnxDUsU5hGOjrdg%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Agile Scrum Master for Oracle Cloud CPQ",
@@ -46,8 +64,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Irving, TX",
-            "link": "https://www.linkedin.com/jobs/view/agile-scrum-master-for-oracle-cloud-cpq-at-tata-consultancy-services-4443173583?position=5&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=XI3W2L35Ex%2FAjIa1E969gQ%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/agile-scrum-master-for-oracle-cloud-cpq-at-tata-consultancy-services-4443173583?position=7&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=lcFG8yxIFG12WFpHGqTcnA%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Global IT Scrum Master \u2013 Treasury & Financial Applications",
@@ -55,8 +73,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Centennial, CO",
-            "link": "https://www.linkedin.com/jobs/view/global-it-scrum-master-%E2%80%93-treasury-financial-applications-at-arrow-electronics-4447583867?position=6&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=0lIN6RJzV4Z8NX1oZsCjgg%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/global-it-scrum-master-%E2%80%93-treasury-financial-applications-at-arrow-electronics-4447583867?position=8&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=Ucjj%2B%2BYgW3t6T%2FIJdG9Lmw%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Scrum Master \u2013 Application Development & DevOps Delivery",
@@ -64,8 +82,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Southfield, MI",
-            "link": "https://www.linkedin.com/jobs/view/scrum-master-%E2%80%93-application-development-devops-delivery-at-htc-global-services-4444699048?position=7&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=A8W4GHYhtEJBUkkj7kjNAw%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/scrum-master-%E2%80%93-application-development-devops-delivery-at-htc-global-services-4444699048?position=9&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=BKGaNuh9lHe0awrlwz%2BBWQ%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Scrum Master",
@@ -73,17 +91,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "San Diego, CA",
-            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-booz-allen-hamilton-4413402101?position=8&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=GShHeBXxIZPswvL8mDo%2BBg%3D%3D",
-            "date": "2026-09-14"
-        },
-        {
-            "title": "Scrum Master",
-            "company": "Leidos",
-            "source": "LinkedIn",
-            "mode": "Remote",
-            "location": "Tewksbury, MA",
-            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-leidos-4437630737?position=9&pageNum=0&refId=u%2Blx7x5o4MctOsHkmT2rBA%3D%3D&trackingId=SdaePbYskTXsnzbvaB5RQA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/scrum-master-at-booz-allen-hamilton-4413402101?position=10&pageNum=0&refId=BzrE%2FdFLumLqupLtL4xtZA%3D%3D&trackingId=NE4ILaYadGzwfvlcyzVALQ%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Sr. Project Manager, IT - Central (A)",
@@ -91,8 +100,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Coral Gables, FL",
-            "link": "https://www.linkedin.com/jobs/view/sr-project-manager-it-central-a-at-university-of-miami-4456373719?position=1&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=sL3xz2Elqtk4nmS5KTcGlA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/sr-project-manager-it-central-a-at-university-of-miami-4456373719?position=1&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=Uq%2Bn7vXxomnWSGPpFE9a9w%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Lead IT Project Manager",
@@ -100,8 +109,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Richmond, VA",
-            "link": "https://www.linkedin.com/jobs/view/lead-it-project-manager-at-mckesson-4466755035?position=2&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=R1iRToiGH8V3iQq7Omxu3g%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/lead-it-project-manager-at-mckesson-4466755035?position=2&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=qU1RqnHc0%2Fls01jMzci2Aw%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Software IT Project Manager",
@@ -109,26 +118,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Strongsville, OH",
-            "link": "https://www.linkedin.com/jobs/view/software-it-project-manager-at-foundation-software-4466787373?position=3&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=oAH1VmPg8xR%2BkgmR7V58rw%3D%3D",
-            "date": "2026-09-14"
-        },
-        {
-            "title": "Sr. IT Project Manager",
-            "company": "TeamHealth",
-            "source": "LinkedIn",
-            "mode": "Remote",
-            "location": "Knoxville, TN",
-            "link": "https://www.linkedin.com/jobs/view/sr-it-project-manager-at-teamhealth-4460656566?position=4&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=%2B64Lfjr%2BSMoH18SkDk63YQ%3D%3D",
-            "date": "2026-09-14"
-        },
-        {
-            "title": "Information Technology Senior Project Manager",
-            "company": "Pinellas County Sheriff's Office",
-            "source": "LinkedIn",
-            "mode": "Remote",
-            "location": "Largo, FL",
-            "link": "https://www.linkedin.com/jobs/view/information-technology-senior-project-manager-at-pinellas-county-sheriff-s-office-4421129021?position=5&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=UFIu%2FWB0NqUQm91BU6UArA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/software-it-project-manager-at-foundation-software-4450874010?position=3&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=RJufi5ZoQxgL1njGE1dH%2Bw%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "IT Project Manager",
@@ -136,8 +127,17 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Duluth, MN",
-            "link": "https://www.linkedin.com/jobs/view/it-project-manager-at-cirrus-4432119096?position=6&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=LmigssqXICAkn93tb9lbZw%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/it-project-manager-at-cirrus-4432119096?position=4&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=4QvV2jrHLpsyyR20hIUNxQ%3D%3D",
+            "date": "2026-09-21"
+        },
+        {
+            "title": "Information Technology Senior Project Manager",
+            "company": "Pinellas County Sheriff's Office",
+            "source": "LinkedIn",
+            "mode": "Remote",
+            "location": "Largo, FL",
+            "link": "https://www.linkedin.com/jobs/view/information-technology-senior-project-manager-at-pinellas-county-sheriff-s-office-4421129021?position=5&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=nJk2Rn59Lm6KCxJu7bdN3g%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Lead IT Project Manager",
@@ -145,8 +145,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Irving, TX",
-            "link": "https://www.linkedin.com/jobs/view/lead-it-project-manager-at-mckesson-4466755034?position=7&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=ixowsXy9TjbnmyLoqPnjgQ%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/lead-it-project-manager-at-mckesson-4466755034?position=6&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=jtZWtFhzuJzslrH%2FnlMFPg%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Senior Technical Project Manager",
@@ -154,17 +154,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Greater Orlando",
-            "link": "https://www.linkedin.com/jobs/view/senior-technical-project-manager-at-fortress-information-security-4444612151?position=8&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=HMedRP4TdobqLDszaDzlMg%3D%3D",
-            "date": "2026-09-14"
-        },
-        {
-            "title": "SAP Project Manager",
-            "company": "Johnson Health Tech North America",
-            "source": "LinkedIn",
-            "mode": "Remote",
-            "location": "Cottage Grove, WI",
-            "link": "https://www.linkedin.com/jobs/view/sap-project-manager-at-johnson-health-tech-north-america-4442962418?position=9&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=jHm3JPCmFP%2Fw73SM%2B3mweA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/senior-technical-project-manager-at-fortress-information-security-4444612151?position=7&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=Y%2FsDHe05ZFaSS1nTsHZTGw%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "IT Project Manager",
@@ -172,8 +163,26 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Maryland Heights, MO",
-            "link": "https://www.linkedin.com/jobs/view/it-project-manager-at-potter-global-technologies-4459413812?position=10&pageNum=0&refId=dmaCxvUE%2F8zf6%2FNGJ8TyAg%3D%3D&trackingId=W2TfTj%2FEh02eugulMwrSAw%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/it-project-manager-at-potter-global-technologies-4459413812?position=8&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=OikKuulqYaYYQ%2FlB6Jt2rA%3D%3D",
+            "date": "2026-09-21"
+        },
+        {
+            "title": "Sr Project Manager - IT",
+            "company": "Las Vegas Sands Corp.",
+            "source": "LinkedIn",
+            "mode": "Remote",
+            "location": "Las Vegas, NV",
+            "link": "https://www.linkedin.com/jobs/view/sr-project-manager-it-at-las-vegas-sands-corp-4468239812?position=9&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=aTp4Shhmlv4iRWrOY871cQ%3D%3D",
+            "date": "2026-09-21"
+        },
+        {
+            "title": "IT Project Manager 2",
+            "company": "HDR",
+            "source": "LinkedIn",
+            "mode": "Remote",
+            "location": "Omaha, NE",
+            "link": "https://www.linkedin.com/jobs/view/it-project-manager-2-at-hdr-4418545017?position=10&pageNum=0&refId=gx3XmhWdrtAOcBcxW95TVA%3D%3D&trackingId=RsE607N0ps2CnvQqhlCe4g%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Engineering Project Manager-Industrial, Energy & Infrastructure",
@@ -181,8 +190,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Charlotte, NC",
-            "link": "https://www.linkedin.com/jobs/view/engineering-project-manager-industrial-energy-infrastructure-at-ramboll-4454547216?position=1&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=ir3wKP13XM2f8QIB%2B1N8BQ%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/engineering-project-manager-industrial-energy-infrastructure-at-ramboll-4454547216?position=1&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=W83gKprx5NvrJwLZT3v8NA%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Project Manager, Technical Projects",
@@ -190,8 +199,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Miami, FL",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-technical-projects-at-carnival-cruise-line-4456351502?position=2&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=hsgnnli4h73QPJuqXrcPew%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-technical-projects-at-carnival-cruise-line-4456351502?position=2&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=lWbdJoxbcxv7kzl4DJwYYA%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Technical Project Manager (PMP)",
@@ -199,8 +208,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Austin, TX",
-            "link": "https://www.linkedin.com/jobs/view/technical-project-manager-pmp-at-thales-4446324653?position=3&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=Ygn9vNYDW%2FRkXeQypgaIIg%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/technical-project-manager-pmp-at-thales-4446324653?position=3&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=xCzJucNk7XrS2xXNN2OxlA%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Project Manager- Protection and Control",
@@ -208,17 +217,17 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Orlando, FL",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-protection-and-control-at-siemens-energy-4455441392?position=4&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=Nwo4y3cdZPn%2FntV4zADZXQ%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-protection-and-control-at-siemens-energy-4455441392?position=4&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=9n33wTFmjuZr%2BCHDIS4yhA%3D%3D",
+            "date": "2026-09-21"
         },
         {
-            "title": "Technical Project Manager",
-            "company": "Stellantis",
+            "title": "Nuclear Power Senior Project Manager - Technical Services",
+            "company": "GE Vernova",
             "source": "LinkedIn",
             "mode": "Remote",
-            "location": "Chelsea, MI",
-            "link": "https://www.linkedin.com/jobs/view/technical-project-manager-at-stellantis-4461560650?position=5&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=q15P6QkkLSx1V0eKTCWhog%3D%3D",
-            "date": "2026-09-14"
+            "location": "Wilmington, NC",
+            "link": "https://www.linkedin.com/jobs/view/nuclear-power-senior-project-manager-technical-services-at-ge-vernova-4467790838?position=5&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=HRqqr9AgHUg0RV2F3E8ZoA%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Project Manager- Protection and Control",
@@ -226,17 +235,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Raleigh, NC",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-protection-and-control-at-siemens-energy-4455434410?position=6&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=t6R6J5O6txTz9mi3UbxflA%3D%3D",
-            "date": "2026-09-14"
-        },
-        {
-            "title": "Technical Project Manager III",
-            "company": "Western Governors University",
-            "source": "LinkedIn",
-            "mode": "Remote",
-            "location": "Salt Lake City Metropolitan Area",
-            "link": "https://www.linkedin.com/jobs/view/technical-project-manager-iii-at-western-governors-university-4461508578?position=7&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=g6ckFSA%2BQLzfoJNW98PvDA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-protection-and-control-at-siemens-energy-4455434410?position=6&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=XFmrkYwlyMRlxueWWBmeow%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Technical Project Manager, Renewable Energy Forecasting",
@@ -244,8 +244,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Raleigh, NC",
-            "link": "https://www.linkedin.com/jobs/view/technical-project-manager-renewable-energy-forecasting-at-ul-solutions-4463068765?position=8&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=rCubHrQzDBHHavTTTmj3gA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/technical-project-manager-renewable-energy-forecasting-at-ul-solutions-4463068765?position=7&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=k3gn1scGYtb53F7yjy9XBg%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Engineering Project Manager - Water Solutions",
@@ -253,8 +253,17 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Novi, MI",
-            "link": "https://www.linkedin.com/jobs/view/engineering-project-manager-water-solutions-at-emerson-4430498598?position=9&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=A1bqVai68ExPUPySFAsfcA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/engineering-project-manager-water-solutions-at-emerson-4430498598?position=8&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=ZnpNiCOE7saWe9yhmYN2xA%3D%3D",
+            "date": "2026-09-21"
+        },
+        {
+            "title": "Staff Information Systems Project Manager",
+            "company": "Northrop Grumman",
+            "source": "LinkedIn",
+            "mode": "Remote",
+            "location": "Colorado Springs, CO",
+            "link": "https://www.linkedin.com/jobs/view/staff-information-systems-project-manager-at-northrop-grumman-4466645457?position=9&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=df92ipVMyKU0gaT4TW3EmA%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Senior Technical Project Manager, Sensors",
@@ -262,8 +271,17 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Malibu, CA",
-            "link": "https://www.linkedin.com/jobs/view/senior-technical-project-manager-sensors-at-hrl-laboratories-llc-4463561589?position=10&pageNum=0&refId=QOrs0SxyZ5hFkjkODWHmqw%3D%3D&trackingId=ktA9XX62PbAo7ecHi%2BUKmw%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/senior-technical-project-manager-sensors-at-hrl-laboratories-llc-4463561589?position=10&pageNum=0&refId=UdoyhIcoBqp9VEMyhh6xtQ%3D%3D&trackingId=BvDmsaNapbh8DG4QoA2DJw%3D%3D",
+            "date": "2026-09-21"
+        },
+        {
+            "title": "Project Manager - Restoration",
+            "company": "Paul Davis Restoration of the National Capital Region, VA",
+            "source": "LinkedIn",
+            "mode": "Remote",
+            "location": "Spokane Valley, WA",
+            "link": "https://www.linkedin.com/jobs/view/project-manager-restoration-at-paul-davis-restoration-of-the-national-capital-region-va-4466001920?position=1&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=4zqXJkrTsa7mD4AdgpQBuw%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "PROJECT MANAGER",
@@ -271,17 +289,17 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Honolulu, HI",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-at-datahouse-4460671268?position=1&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=9tDsBS5uZa5iUZkzdU1Eow%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-at-datahouse-4460671268?position=2&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=NQ6RPEW7ayEdiFRWgj3wig%3D%3D",
+            "date": "2026-09-21"
         },
         {
-            "title": "Project Manager - Surface Mine",
-            "company": "Rio Tinto",
+            "title": "Project Manager",
+            "company": "Western States Fire Protection",
             "source": "LinkedIn",
             "mode": "Remote",
-            "location": "Salt Lake City, UT",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-surface-mine-at-rio-tinto-4452791366?position=2&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=NVyahpJP4TKwvmfOYyhiew%3D%3D",
-            "date": "2026-09-14"
+            "location": "Lake Oswego, OR",
+            "link": "https://www.linkedin.com/jobs/view/project-manager-at-western-states-fire-protection-4469250224?position=3&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=561UfdbT6wWA95p%2BpNwgkw%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Power & Energy Lifecycle Project Manager",
@@ -289,8 +307,17 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Boise, ID",
-            "link": "https://www.linkedin.com/jobs/view/power-energy-lifecycle-project-manager-at-wsp-in-the-u-s-4446068927?position=3&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=0EG5mwdArkVin3oKPBXDxw%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/power-energy-lifecycle-project-manager-at-wsp-in-the-u-s-4446068927?position=4&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=jGopyAZ4A3ltuftU8YWAHQ%3D%3D",
+            "date": "2026-09-21"
+        },
+        {
+            "title": "DSC Project Manager",
+            "company": "ADP",
+            "source": "LinkedIn",
+            "mode": "Remote",
+            "location": "Maitland, FL",
+            "link": "https://www.linkedin.com/jobs/view/dsc-project-manager-at-adp-4466962099?position=5&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=%2BVKuujHT0FKhklpwIDvumQ%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Project Manager, Construction",
@@ -298,8 +325,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Boise, ID",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-construction-at-uprite-construction-corporation-4450294299?position=4&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=CYThBlOxUj%2B82FBTplM0MA%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-construction-at-uprite-construction-corporation-4450294299?position=6&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=z%2BZ6T9Unq3AmGl4Er9Pdtw%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Project Manager - Construction",
@@ -307,8 +334,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Boise, ID",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-construction-at-ocean-park-mechanical-4431794368?position=5&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=3cp%2Ft5%2Fj3PxU%2BEy9U7Ttqw%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-construction-at-ocean-park-mechanical-4431794368?position=7&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=4Bs%2BRGhhQZJo4IJoFeKwOQ%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Project Manager",
@@ -316,8 +343,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Boise, ID",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-at-coffman-excavation-inc-4426668071?position=6&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=oKHr%2Ba3i%2F2t%2B%2FADhevdQmw%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-at-coffman-excavation-inc-4426668071?position=8&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=KpTsyNY6SoqRfB8dLPQiKQ%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Project Manager",
@@ -325,17 +352,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "East Northport, NY",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-at-d-v-home-design-center-4439257173?position=7&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=b0UpHmhk6AHWExxvX2Rhww%3D%3D",
-            "date": "2026-09-14"
-        },
-        {
-            "title": "Project Manager",
-            "company": "Construction Job Board USA",
-            "source": "LinkedIn",
-            "mode": "Remote",
-            "location": "Council Bluffs, IA",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-at-construction-job-board-usa-4467033759?position=8&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=o0yw0JVrQrdj1DWV2JPQWQ%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-at-d-v-home-design-center-4439257173?position=9&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=cuXg0tRuvDHORODCltTLLA%3D%3D",
+            "date": "2026-09-21"
         },
         {
             "title": "Project Manager II",
@@ -343,17 +361,8 @@
             "source": "LinkedIn",
             "mode": "Remote",
             "location": "Hazelwood, MO",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-ii-at-xylem-4454566526?position=9&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=IDh1el%2FEGB2ro5EPhwigJA%3D%3D",
-            "date": "2026-09-14"
-        },
-        {
-            "title": "Project Manager, Onsite",
-            "company": "Bass Pro Shops",
-            "source": "LinkedIn",
-            "mode": "Onsite",
-            "location": "Springfield, MO",
-            "link": "https://www.linkedin.com/jobs/view/project-manager-onsite-at-bass-pro-shops-4440597963?position=10&pageNum=0&refId=npWmJiaxYibwt79ceupOdg%3D%3D&trackingId=hCr87GiLp%2FHrkg5rey8zXg%3D%3D",
-            "date": "2026-09-14"
+            "link": "https://www.linkedin.com/jobs/view/project-manager-ii-at-xylem-4454566526?position=10&pageNum=0&refId=L%2BYzyjiSMZtLqZEqTFk1lw%3D%3D&trackingId=0u3uCKfZYZgXenZaPCWqxg%3D%3D",
+            "date": "2026-09-21"
         }
     ]
 }
