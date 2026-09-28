@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Job Command Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <span class="badge-pulse"><span class="dot"></span> Live Telemetry Active</span>
+            <h1>Remote Job Command Center</h1>
+            <p>Automated multi-platform intelligence feed filtering targeted remote opportunities.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="controls">
+            <input type="text" id="searchFilter" placeholder="Search by title, stack, or company..." onkeyup="filterJobs()">
+            <div class="source-filters">
+                <button class="filter-btn active" onclick="filterSource('all')">All Sources</button>
+                <button class="filter-btn" onclick="filterSource('LinkedIn')">LinkedIn</button>
+                <button class="filter-btn" onclick="filterSource('RemoteOK')">Remote OK</button>
+                <button class="filter-btn" onclick="filterSource('Himalayas')">Himalayas</button>
+            </div>
+        </div>
+
+        <section class="job-grid" id="jobGrid">
+            {% for job in jobs %}
+            <article class="job-card" data-source="{{ job.source }}">
+                <div class="card-header">
+                    <span class="source-tag {{ job.source_class }}">{{ job.source }}</span>
+                    <span class="date">{{ job.date }}</span>
+                </div>
+                <h2>{{ job.title }}</h2>
+                <h3 class="company">{{ job.company }}</h3>
+                <p class="location">🌍 {{ job.location }}</p>
+                <div class="card-footer">
+                    <a href="{{ job.url }}" target="_blank" rel="noopener noreferrer" class="apply-btn">View Listing <span>&rarr;</span></a>
+                </div>
+            </article>
+            {% endfor %}
+        </section>
+    </main>
+
+    <script>
+        function filterSource(source) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.job-card');
+            cards.forEach(card => {
+                if (source === 'all' || card.dataset.source === source) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function filterJobs() {
+            let input = document.getElementById('searchFilter').value.toLowerCase();
+            let cards = document.querySelectorAll('.job-card');
+            
+            cards.forEach(card => {
+                let text = card.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
