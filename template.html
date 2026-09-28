@@ -33,6 +33,18 @@
                 <input type="text" id="searchInput" placeholder="Search title, skills, stack, or company..." onkeyup="applyFilters()">
             </div>
 
+            <!-- Quick Stack / Tech Filter Chips -->
+            <div class="filter-group">
+                <span class="filter-label">Tech Stack:</span>
+                <button class="glass-chip active" data-filter="stack" data-value="all" onclick="toggleStackChip(this)">All Stack</button>
+                <button class="glass-chip" data-filter="stack" data-value="python" onclick="toggleStackChip(this)">Python</button>
+                <button class="glass-chip" data-filter="stack" data-value="react" onclick="toggleStackChip(this)">React</button>
+                <button class="glass-chip" data-filter="stack" data-value="aws" onclick="toggleStackChip(this)">AWS</button>
+                <button class="glass-chip" data-filter="stack" data-value="agile" onclick="toggleStackChip(this)">Agile</button>
+                <button class="glass-chip" data-filter="stack" data-value="scrum" onclick="toggleStackChip(this)">Scrum / PM</button>
+                <button class="glass-chip" data-filter="stack" data-value="devops" onclick="toggleStackChip(this)">DevOps</button>
+            </div>
+
             <div class="filter-group">
                 <span class="filter-label">Source:</span>
                 <button class="glass-chip active" data-filter="source" data-value="all" onclick="toggleChip(this)">All</button>
@@ -77,11 +89,28 @@
         </section>
     </main>
 
+    <!-- Floating Back-to-Top Glass Button -->
+    <button id="backToTop" class="glass-top-btn" onclick="scrollToTop()" title="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
     <script>
+        let selectedStack = 'all';
+
         function toggleChip(button) {
             const group = button.parentElement;
             group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
+            applyFilters();
+        }
+
+        function toggleStackChip(button) {
+            const group = button.parentElement;
+            group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            selectedStack = button.dataset.value;
             applyFilters();
         }
 
@@ -102,11 +131,20 @@
                 const matchesQuery = title.includes(query) || company.includes(query) || location.includes(query);
                 const matchesSource = activeSource === 'all' || source === activeSource;
                 
+                let matchesStack = true;
+                if (selectedStack !== 'all') {
+                    if (selectedStack === 'scrum') {
+                        matchesStack = title.includes('scrum') || title.includes('project manager') || title.includes('pm') || title.includes('agile');
+                    } else {
+                        matchesStack = title.includes(selectedStack) || company.includes(selectedStack);
+                    }
+                }
+
                 let matchesScope = true;
                 if (activeScope === 'worldwide') matchesScope = location.includes('worldwide') || location.includes('global');
                 if (activeScope === 'europe') matchesScope = location.includes('europe') || location.includes('eu');
 
-                if (matchesQuery && matchesSource && matchesScope) {
+                if (matchesQuery && matchesSource && matchesScope && matchesStack) {
                     card.style.display = 'flex';
                     visibleCount++;
                 } else {
@@ -116,9 +154,22 @@
 
             document.getElementById('jobCount').innerText = visibleCount;
         }
-    </script>
-</body>
-</html>
+
+        // Back-to-Top Floating Button Logic
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
     </script>
 </body>
