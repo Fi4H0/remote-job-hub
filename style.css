@@ -305,12 +305,47 @@ body {
     gap: 7px;
 }
 
+/* Floating Back-to-Top Glass Button */
+.glass-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+.glass-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.glass-top-btn:hover {
+    background: rgba(168, 85, 247, 0.25);
+    border-color: var(--text-accent);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    transform: translateY(-2px);
+}
+
 @keyframes pulse {
     0% { opacity: 1; }
     50% { opacity: 0.3; }
     100% { opacity: 1; }
 }
-
-.sourceIt looks like the details or code files for your project were not attached in your message! 
-
-Please share the specific project code, repository structure, or details on what you are trying to publish (for example: a static HTML/CSS/JS site, a Jekyll blog, or a framework build like React/Vue/Svelte), and I will provide the completed, ready-to-deploy code alongside the updated files and configuration (such as `index.html` or a `.github/workflows/deploy.yml` GitHub Actions pipeline).
