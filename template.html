@@ -3,42 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remote Job Command Center</title>
+    <title>Nexus Jobs | Remote Telemetry Feed</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="hero">
-        <div class="hero-content">
-            <span class="badge-pulse"><span class="dot"></span> Live Telemetry Active</span>
-            <h1>Remote Job Command Center</h1>
-            <p>Automated multi-platform intelligence feed filtering targeted remote opportunities.</p>
+    <div class="space-background"></div>
+
+    <!-- Sticky Glass Navigation Header -->
+    <header class="glass-header">
+        <div class="header-inner">
+            <div class="brand">
+                <div class="logo-glow"></div>
+                <span class="brand-text">NEXUS<span class="highlight">JOBS</span></span>
+                <span class="live-pill"><span class="dot"></span> Live Feed</span>
+            </div>
+            
+            <div class="quick-stats">
+                <span id="jobCount">{{ jobs|length }}</span> Positions Available
+            </div>
         </div>
     </header>
 
-    <main class="container">
-        <div class="controls">
-            <input type="text" id="searchFilter" placeholder="Search by title, stack, or company..." onkeyup="filterJobs()">
-            <div class="source-filters">
-                <button class="filter-btn active" onclick="filterSource('all')">All Sources</button>
-                <button class="filter-btn" onclick="filterSource('LinkedIn')">LinkedIn</button>
-                <button class="filter-btn" onclick="filterSource('RemoteOK')">Remote OK</button>
-                <button class="filter-btn" onclick="filterSource('Himalayas')">Himalayas</button>
+    <main class="main-layout">
+        <!-- Sticky HiringCafe Style Multi-Filter Bar -->
+        <section class="glass-filter-bar">
+            <div class="search-box">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="searchInput" placeholder="Search title, skills, stack, or company..." onkeyup="applyFilters()">
             </div>
-        </div>
 
-        <section class="job-grid" id="jobGrid">
+            <div class="filter-group">
+                <span class="filter-label">Source:</span>
+                <button class="glass-chip active" data-filter="source" data-value="all" onclick="toggleChip(this)">All</button>
+                <button class="glass-chip" data-filter="source" data-value="LinkedIn" onclick="toggleChip(this)">LinkedIn</button>
+                <button class="glass-chip" data-filter="source" data-value="RemoteOK" onclick="toggleChip(this)">RemoteOK</button>
+                <button class="glass-chip" data-filter="source" data-value="Himalayas" onclick="toggleChip(this)">Himalayas</button>
+            </div>
+
+            <div class="filter-group">
+                <span class="filter-label">Scope:</span>
+                <button class="glass-chip active" data-filter="scope" data-value="all" onclick="toggleChip(this)">Anywhere</button>
+                <button class="glass-chip" data-filter="scope" data-value="worldwide" onclick="toggleChip(this)">Worldwide</button>
+                <button class="glass-chip" data-filter="scope" data-value="europe" onclick="toggleChip(this)">Europe / EU</button>
+            </div>
+        </section>
+
+        <!-- High-Density Ultra Compact Job Grid -->
+        <section class="compact-job-grid" id="jobGrid">
             {% for job in jobs %}
-            <article class="job-card" data-source="{{ job.source }}">
-                <div class="card-header">
+            <article class="glass-job-card" data-source="{{ job.source }}" data-title="{{ job.title|lower }}" data-company="{{ job.company|lower }}" data-location="{{ job.location|lower }}">
+                <div class="card-top">
                     <span class="source-tag {{ job.source_class }}">{{ job.source }}</span>
-                    <span class="date">{{ job.date }}</span>
+                    <span class="time-stamp">{{ job.date }}</span>
                 </div>
-                <h2>{{ job.title }}</h2>
-                <h3 class="company">{{ job.company }}</h3>
-                <p class="location">🌍 {{ job.location }}</p>
-                <div class="card-footer">
-                    <a href="{{ job.url }}" target="_blank" rel="noopener noreferrer" class="apply-btn">View Listing <span>&rarr;</span></a>
+
+                <div class="card-body">
+                    <h2 class="job-title" title="{{ job.title }}">{{ job.title }}</h2>
+                    <div class="company-row">
+                        <span class="company-name">{{ job.company }}</span>
+                        <span class="bullet">•</span>
+                        <span class="location-text">🌍 {{ job.location }}</span>
+                    </div>
+                </div>
+
+                <div class="card-bottom">
+                    <a href="{{ job.url }}" target="_blank" rel="noopener noreferrer" class="glass-apply-btn">
+                        Apply <span>&rarr;</span>
+                    </a>
                 </div>
             </article>
             {% endfor %}
@@ -46,32 +78,47 @@
     </main>
 
     <script>
-        function filterSource(source) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            const cards = document.querySelectorAll('.job-card');
-            cards.forEach(card => {
-                if (source === 'all' || card.dataset.source === source) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+        function toggleChip(button) {
+            const group = button.parentElement;
+            group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            applyFilters();
         }
 
-        function filterJobs() {
-            let input = document.getElementById('searchFilter').value.toLowerCase();
-            let cards = document.querySelectorAll('.job-card');
-            
+        function applyFilters() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const activeSource = document.querySelector('.glass-chip.active[data-filter="source"]')?.dataset.value || 'all';
+            const activeScope = document.querySelector('.glass-chip.active[data-filter="scope"]')?.dataset.value || 'all';
+
+            const cards = document.querySelectorAll('.glass-job-card');
+            let visibleCount = 0;
+
             cards.forEach(card => {
-                let text = card.innerText.toLowerCase();
-                if (text.includes(input)) {
+                const title = card.dataset.title;
+                const company = card.dataset.company;
+                const location = card.dataset.location;
+                const source = card.dataset.source;
+
+                const matchesQuery = title.includes(query) || company.includes(query) || location.includes(query);
+                const matchesSource = activeSource === 'all' || source === activeSource;
+                
+                let matchesScope = true;
+                if (activeScope === 'worldwide') matchesScope = location.includes('worldwide') || location.includes('global');
+                if (activeScope === 'europe') matchesScope = location.includes('europe') || location.includes('eu');
+
+                if (matchesQuery && matchesSource && matchesScope) {
                     card.style.display = 'flex';
+                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
+
+            document.getElementById('jobCount').innerText = visibleCount;
+        }
+    </script>
+</body>
+</html>
         }
     </script>
 </body>
