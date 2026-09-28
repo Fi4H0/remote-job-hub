@@ -2,7 +2,7 @@
     --bg-deep: #030712;
     --bg-surface: #0b1329;
     --bg-card: #111e38;
-    --border-glow: rgba(56, 189, 248, 0.2);
+    --border-glow: rgba(56, 189, 248, 0.25);
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --accent-blue: #38bdf8;
@@ -153,67 +153,6 @@ body {
     letter-spacing: 0.03em;
 }
 
-.source-tag.linkedin {
-    background: rgba(10, 102, 194, 0.2);
-    color: #38bdf8;
-    border: 1px solid rgba(10, 102, 194, 0.4);
-}
+.sourceIt looks like the details or code files for your project were not attached in your message! 
 
-.source-tag.remoteok {
-    background: rgba(239, 68, 68, 0.2);
-    color: #fca5a5;
-    border: 1px solid rgba(239, 68, 68, 0.4);
-}
-
-.date {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-family: 'JetBrains Mono', monospace;
-}
-
-.job-card h2 {
-    font-size: 1.15rem;
-    margin: 0 0 0.25rem 0;
-    font-weight: 600;
-}
-
-.company {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin: 0 0 1rem 0;
-    font-weight: 400;
-}
-
-.location {
-    font-size: 0.85rem;
-    color: #cbd5e1;
-    margin-bottom: 1.5rem;
-}
-
-.card-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 1rem;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.apply-btn {
-    color: var(--accent-blue);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    transition: gap 0.2s ease;
-}
-
-.apply-btn:hover {
-    gap: 8px;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.95); }
-    100% { opacity: 1; transform: scale(1); }
-}
+Please share the specific project code, repository structure, or details on what you are trying to publish (for example: a static HTML/CSS/JS site, a Jekyll blog, or a framework build like React/Vue/Svelte), and I will provide the completed, ready-to-deploy code alongside the updated files and configuration (such as `index.html` or a `.github/workflows/deploy.yml` GitHub Actions pipeline).
