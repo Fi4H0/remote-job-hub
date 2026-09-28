@@ -1,156 +1,314 @@
 :root {
-    --bg-deep: #030712;
-    --bg-surface: #0b1329;
-    --bg-card: #111e38;
-    --border-glow: rgba(56, 189, 248, 0.25);
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent-blue: #38bdf8;
-    --accent-glow: rgba(56, 189, 248, 0.15);
+    --bg-dark: #030712;
+    --bg-gradient: radial-gradient(circle at 50% -20%, #1e1b4b 0%, #0f172a 45%, #030712 100%);
+    --glass-bg: rgba(15, 23, 42, 0.65);
+    --glass-border: rgba(139, 92, 246, 0.2);
+    --glass-hover-border: rgba(168, 85, 247, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-accent: #a855f7;
+    --cyan-glow: #38bdf8;
+    
+    --tag-linkedin: rgba(14, 165, 233, 0.15);
+    --tag-linkedin-text: #38bdf8;
+    --tag-remoteok: rgba(239, 68, 68, 0.15);
+    --tag-remoteok-text: #fca5a5;
+    --tag-himalayas: rgba(168, 85, 247, 0.15);
+    --tag-himalayas-text: #c084fc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-deep);
-    color: var(--text-main);
-    margin: 0;
-    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-dark);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
     min-height: 100vh;
-    background-image: radial-gradient(circle at 50% 0%, #0c1c3f 0%, var(--bg-deep) 70%);
+    padding-bottom: 3rem;
 }
 
-.hero {
-    text-align: center;
-    padding: 4rem 1rem 2rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+/* Glass Header */
+.glass-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(3, 7, 18, 0.7);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 0.75rem 1.5rem;
 }
 
-.badge-pulse {
+.header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-text {
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+}
+
+.brand-text .highlight {
+    color: var(--text-accent);
+}
+
+.live-pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(14, 165, 233, 0.1);
-    color: var(--accent-blue);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    gap: 6px;
+    background: rgba(168, 85, 247, 0.1);
+    color: var(--text-accent);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.72rem;
     font-weight: 600;
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    margin-bottom: 1rem;
 }
 
 .dot {
     width: 6px;
     height: 6px;
-    background-color: var(--accent-blue);
+    background-color: var(--text-accent);
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--accent-blue);
-    animation: pulse 2s infinite;
+    box-shadow: 0 0 8px var(--text-accent);
+    animation: pulse 1.8s infinite;
 }
 
-.hero h1 {
-    font-size: 2.25rem;
-    margin: 0 0 0.5rem 0;
-    letter-spacing: -0.02em;
+.quick-stats {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
 }
 
-.hero p {
-    color: var(--text-muted);
-    font-size: 1rem;
+.quick-stats span {
+    color: var(--cyan-glow);
+    font-weight: 700;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
+/* Main Container & HiringCafe Filter Bar */
+.main-layout {
+    max-width: 1400px;
+    margin: 1.5rem auto 0 auto;
+    padding: 0 1.5rem;
 }
 
-.controls {
+.glass-filter-bar {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    gap: 1rem;
     flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--glass-shadow);
 }
 
-#searchFilter {
-    flex: 1;
-    min-width: 280px;
-    background: var(--bg-surface);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px 16px;
-    border-radius: 8px;
-    color: white;
-    font-size: 0.95rem;
+.search-box {
+    position: relative;
+    flex: 1 1 300px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+#searchInput {
+    width: 100%;
+    background: rgba(3, 7, 18, 0.6);
+    border: 1px solid var(--glass-border);
+    padding: 9px 12px 9px 40px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.88rem;
     outline: none;
-    transition: all 0.3s ease;
-}
-
-#searchFilter:focus {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px var(--accent-glow);
-}
-
-.source-filters {
-    display: flex;
-    gap: 8px;
-}
-
-.filter-btn {
-    background: var(--bg-surface);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-muted);
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
     transition: all 0.2s ease;
 }
 
-.filter-btn:hover, .filter-btn.active {
-    background: var(--accent-blue);
-    color: var(--bg-deep);
-    border-color: var(--accent-blue);
+#searchInput:focus {
+    border-color: var(--text-accent);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.25);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.filter-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
     font-weight: 600;
+    margin-right: 4px;
 }
 
-.job-grid {
+.glass-chip {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.glass-chip:hover {
+    border-color: var(--glass-hover-border);
+    color: #fff;
+}
+
+.glass-chip.active {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(56, 189, 248, 0.2));
+    border-color: var(--text-accent);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+}
+
+/* High-Density Compact Grid Layout */
+.compact-job-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1rem;
 }
 
-.job-card {
-    background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+.glass-job-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1rem 1.1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--glass-shadow);
 }
 
-.job-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--border-glow);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+.glass-job-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--glass-hover-border);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 0 16px rgba(168, 85, 247, 0.15);
 }
 
-.card-header {
+.card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
 }
 
 .source-tag {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 5px;
+    letter-spacing: 0.02em;
+}
+
+.source-tag.linkedin { background: var(--tag-linkedin); color: var(--tag-linkedin-text); }
+.source-tag.remoteok { background: var(--tag-remoteok); color: var(--tag-remoteok-text); }
+.source-tag.himalayas { background: var(--tag-himalayas); color: var(--tag-himalayas-text); }
+
+.time-stamp {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.card-body {
+    margin-bottom: 0.8rem;
+}
+
+.job-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.company-row {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.company-name {
     font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.03em;
+    color: #cbd5e1;
+}
+
+.bullet {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.card-bottom {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 0.6rem;
+}
+
+.glass-apply-btn {
+    color: var(--cyan-glow);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.82rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.glass-apply-btn:hover {
+    color: var(--text-accent);
+    gap: 7px;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
 }
 
 .sourceIt looks like the details or code files for your project were not attached in your message! 
