@@ -4,184 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus PM Jobs | Work From Anywhere Feed</title>
-    <link rel="stylesheet" href="style.css?v=3">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Cache busting parameter ensures GitHub Pages loads the latest CSS -->
+    <link rel="stylesheet" href="style.css?v=6">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="space-background"></div>
 
-    <!-- Sticky Glass Navigation Header -->
-    <header class="glass-header">
-        <div class="header-inner">
-            <div class="brand">
-                <div class="logo-glow"></div>
-                <span class="brand-text">NEXUS<span class="highlight">PM</span></span>
-                <span class="live-pill"><span class="dot"></span> Anywhere Remote</span>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header-section">
+            <h1 class="header-title">NEXUS PM REMOTE</h1>
+            <p class="header-subtitle">Targeted Work-From-Anywhere Roles for Project & Delivery Leaders</p>
+            <div class="stats-counter">
+                <span id="jobCount">{{ jobs|length }}</span> Positions Available
             </div>
-            
-            <div class="quick-stats">
-                <span id="jobCount">{{ jobs|length }}</span> Target PM Roles
-            </div>
-        </div>
-    </header>
+        </header>
 
-    <main class="main-layout">
-        <!-- Sticky HiringCafe Style Multi-Filter Bar -->
-        <section class="glass-filter-bar">
-            <div class="search-box">
-                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="searchInput" placeholder="Search PM, Telecom, IT, Delivery, or company..." onkeyup="applyFilters()">
-            </div>
-
-            <!-- Role Focus Filter Chips -->
-            <div class="filter-group">
-                <span class="filter-label">Role Focus:</span>
-                <button class="glass-chip active" data-filter="role" data-value="all" onclick="toggleRoleChip(this)">All PM Roles</button>
-                <button class="glass-chip" data-filter="role" data-value="it_pm" onclick="toggleRoleChip(this)">IT PM</button>
-                <button class="glass-chip" data-filter="role" data-value="sdm" onclick="toggleRoleChip(this)">Service Delivery</button>
-                <button class="glass-chip" data-filter="role" data-value="telecom" onclick="toggleRoleChip(this)">Telecom PM</button>
-                <button class="glass-chip" data-filter="role" data-value="general_pm" onclick="toggleRoleChip(this)">Project Manager</button>
-            </div>
-
-            <div class="filter-group">
-                <span class="filter-label">Location Scope:</span>
-                <button class="glass-chip active" data-filter="scope" data-value="anywhere" onclick="toggleChip(this)">🌍 Work From Anywhere</button>
-                <button class="glass-chip" data-filter="scope" data-value="all" onclick="toggleChip(this)">Show All Locations</button>
-            </div>
-
-            <div class="filter-group">
-                <span class="filter-label">Source:</span>
-                <button class="glass-chip active" data-filter="source" data-value="all" onclick="toggleChip(this)">All Sources</button>
-                <button class="glass-chip" data-filter="source" data-value="LinkedIn" onclick="toggleChip(this)">LinkedIn</button>
-                <button class="glass-chip" data-filter="source" data-value="RemoteOK" onclick="toggleChip(this)">RemoteOK</button>
-                <button class="glass-chip" data-filter="source" data-value="Himalayas" onclick="toggleChip(this)">Himalayas</button>
-                <button class="glass-chip" data-filter="source" data-value="HiringCafe" onclick="toggleChip(this)">HiringCafe</button>
-            </div>
-        </section>
-
-        <!-- High-Density Ultra Compact Job Grid -->
-        <section class="compact-job-grid" id="jobGrid">
-            {% for job in jobs %}
-            <article class="glass-job-card" data-source="{{ job.source }}" data-title="{{ job.title|lower }}" data-company="{{ job.company|lower }}" data-location="{{ job.location|lower }}">
-                <div class="card-top">
-                    <span class="source-tag {{ job.source_class }}">{{ job.source }}</span>
-                    <span class="time-stamp">{{ job.date }}</span>
+        <!-- Sticky Glass Filter Bar -->
+        <div class="filter-wrapper">
+            <section class="glass-filter-bar">
+                <div class="search-input-wrapper">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search PM, Telecom, IT, Delivery, or company..." onkeyup="applyFilters()">
                 </div>
 
-                <div class="card-body">
-                    <h2 class="job-title" title="{{ job.title }}">{{ job.title }}</h2>
-                    <div class="company-row">
+                <!-- Role Focus Filter Chips -->
+                <div class="filter-groups">
+                    <span class="filter-label">Role Focus:</span>
+                    <button class="glass-chip active" data-filter="role" data-value="all" onclick="toggleRoleChip(this)">All PM Roles</button>
+                    <button class="glass-chip" data-filter="role" data-value="it_pm" onclick="toggleRoleChip(this)">IT PM</button>
+                    <button class="glass-chip" data-filter="role" data-value="sdm" onclick="toggleRoleChip(this)">Service Delivery</button>
+                    <button class="glass-chip" data-filter="role" data-value="telecom" onclick="toggleRoleChip(this)">Telecom PM</button>
+                    <button class="glass-chip" data-filter="role" data-value="general_pm" onclick="toggleRoleChip(this)">Project Manager</button>
+                </div>
+
+                <!-- Source Filter Chips -->
+                <div class="filter-groups">
+                    <span class="filter-label">Source:</span>
+                    <button class="glass-chip active" data-filter="source" data-value="all" onclick="toggleChip(this)">All Sources</button>
+                    <button class="glass-chip" data-filter="source" data-value="RemoteOK" onclick="toggleChip(this)">RemoteOK</button>
+                    <button class="glass-chip" data-filter="source" data-value="Himalayas" onclick="toggleChip(this)">Himalayas</button>
+                    <button class="glass-chip" data-filter="source" data-value="HiringCafe" onclick="toggleChip(this)">HiringCafe</button>
+                </div>
+
+                <!-- Scope Filter Chips -->
+                <div class="filter-groups">
+                    <span class="filter-label">Scope:</span>
+                    <button class="glass-chip active" data-filter="scope" data-value="all" onclick="toggleChip(this)">All Locations</button>
+                    <button class="glass-chip" data-filter="scope" data-value="anywhere" onclick="toggleChip(this)">🌍 Work From Anywhere</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Job Cards Grid -->
+        <main class="jobs-grid" id="jobGrid">
+            {% for job in jobs %}
+            <article class="glass-job-card" data-source="{{ job.source }}" data-title="{{ job.title|lower }}" data-company="{{ job.company|lower }}" data-location="{{ job.location|lower }}">
+                <div>
+                    <div class="card-header">
                         <span class="company-name">{{ job.company }}</span>
-                        <span class="bullet">•</span>
-                        <span class="location-text">🌍 {{ job.location }}</span>
+                        <span class="badge {{ job.source_class }}">{{ job.source }}</span>
+                    </div>
+
+                    <h2 class="job-title" title="{{ job.title }}">{{ job.title }}</h2>
+
+                    <div class="card-meta">
+                        <span class="meta-item">🌍 {{ job.location }}</span>
                     </div>
                 </div>
 
-                <div class="card-bottom">
-                    <a href="{{ job.url }}" target="_blank" rel="noopener noreferrer" class="glass-apply-btn">
-                        Apply <span>&rarr;</span>
+                <div class="card-footer">
+                    <span class="posted-date">{{ job.date }}</span>
+                    <a href="{{ job.url }}" target="_blank" rel="noopener noreferrer" class="apply-btn">
+                        Apply &rarr;
                     </a>
                 </div>
             </article>
             {% endfor %}
-        </section>
-    </main>
+        </main>
+    </div>
 
-    <!-- Floating Back-to-Top Glass Button -->
-    <button id="backToTop" class="glass-top-btn" onclick="scrollToTop()" title="Back to top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
+    <!-- Floating Back-to-Top Button -->
+    <button id="backToTop" class="back-to-top" onclick="scrollToTop()" title="Back to top">
+        ↑
     </button>
 
     <script>
-    let selectedRole = 'all';
+        let selectedRole = 'all';
 
-    function toggleChip(button) {
-        const group = button.parentElement;
-        group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        applyFilters();
-    }
+        function toggleChip(button) {
+            const group = button.parentElement;
+            group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            applyFilters();
+        }
 
-    function toggleRoleChip(button) {
-        const group = button.parentElement;
-        group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        selectedRole = button.dataset.value;
-        applyFilters();
-    }
+        function toggleRoleChip(button) {
+            const group = button.parentElement;
+            group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            selectedRole = button.dataset.value;
+            applyFilters();
+        }
 
-    function applyFilters() {
-        const query = document.getElementById('searchInput').value.toLowerCase();
-        const activeSource = document.querySelector('.glass-chip.active[data-filter="source"]')?.dataset.value || 'all';
-        const activeScope = document.querySelector('.glass-chip.active[data-filter="scope"]')?.dataset.value || 'all';
+        function applyFilters() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const activeSource = document.querySelector('.glass-chip.active[data-filter="source"]')?.dataset.value || 'all';
+            const activeScope = document.querySelector('.glass-chip.active[data-filter="scope"]')?.dataset.value || 'all';
 
-        const cards = document.querySelectorAll('.glass-job-card');
-        let visibleCount = 0;
+            const cards = document.querySelectorAll('.glass-job-card');
+            let visibleCount = 0;
 
-        const roleKeywords = {
-            it_pm: ['it project manager', 'it pm', 'information technology', 'software', 'technical project', 'technical program'],
-            sdm: ['service delivery', 'delivery manager', 'sdm', 'service manager'],
-            telecom: ['telecom', 'telecommunications', 'voip', 'telco', 'network'],
-            general_pm: ['project manager', 'program manager', 'scrum', 'agile', 'project lead', 'pmo']
-        };
+            const roleKeywords = {
+                it_pm: ['it project manager', 'it pm', 'information technology', 'software', 'technical project', 'technical program'],
+                sdm: ['service delivery', 'delivery manager', 'sdm', 'service manager'],
+                telecom: ['telecom', 'telecommunications', 'voip', 'telco', 'network'],
+                general_pm: ['project manager', 'program manager', 'scrum', 'agile', 'project lead', 'pmo']
+            };
 
-        cards.forEach(card => {
-            const title = card.dataset.title;
-            const company = card.dataset.company;
-            const location = card.dataset.location;
-            const source = card.dataset.source;
+            cards.forEach(card => {
+                const title = card.dataset.title;
+                const company = card.dataset.company;
+                const location = card.dataset.location;
+                const source = card.dataset.source;
 
-            // 1. Text Search Query Match
-            const matchesQuery = !query || title.includes(query) || company.includes(query) || location.includes(query);
-            
-            // 2. Source Filter Match
-            const matchesSource = activeSource === 'all' || source === activeSource;
+                // 1. Text Search Query
+                const matchesQuery = !query || title.includes(query) || company.includes(query) || location.includes(query);
+                
+                // 2. Source Filter
+                const matchesSource = activeSource === 'all' || source === activeSource;
 
-            // 3. Location Scope Match
-            let matchesLocation = true;
-            if (activeScope === 'anywhere') {
-                matchesLocation = location.includes('worldwide') || 
-                                  location.includes('anywhere') || 
-                                  location.includes('global') || 
-                                  location.includes('remote');
-            }
+                // 3. Location Scope Filter
+                let matchesLocation = true;
+                if (activeScope === 'anywhere') {
+                    matchesLocation = location.includes('worldwide') || 
+                                      location.includes('anywhere') || 
+                                      location.includes('global') || 
+                                      location.includes('remote');
+                }
 
-            // 4. Role Chip Match
-            let matchesRole = true;
-            if (selectedRole !== 'all') {
-                matchesRole = roleKeywords[selectedRole].some(k => title.includes(k));
-            }
+                // 4. Role Chip Filter
+                let matchesRole = true;
+                if (selectedRole !== 'all') {
+                    matchesRole = roleKeywords[selectedRole].some(k => title.includes(k));
+                }
 
-            if (matchesQuery && matchesSource && matchesLocation && matchesRole) {
-                card.style.display = 'flex';
-                visibleCount++;
+                if (matchesQuery && matchesSource && matchesLocation && matchesRole) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('jobCount').innerText = visibleCount;
+        }
+
+        document.addEventListener('DOMContentLoaded', applyFilters);
+
+        // Floating Back-to-Top Logic
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
             } else {
-                card.style.display = 'none';
+                backToTopBtn.classList.remove('visible');
             }
         });
 
-        document.getElementById('jobCount').innerText = visibleCount;
-    }
-
-    // Run filter on initial load
-    document.addEventListener('DOMContentLoaded', applyFilters);
-
-    // Back-to-Top Floating Glass Button
-    const backToTopBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    });
-
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-</script>
+    </script>
 </body>
 </html>
-     
