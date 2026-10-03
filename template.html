@@ -94,104 +94,93 @@
     </button>
 
     <script>
-        let selectedRole = 'all';
+    let selectedRole = 'all';
 
-        function toggleChip(button) {
-            const group = button.parentElement;
-            group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            applyFilters();
-        }
+    function toggleChip(button) {
+        const group = button.parentElement;
+        group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        applyFilters();
+    }
 
-        function toggleRoleChip(button) {
-            const group = button.parentElement;
-            group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            selectedRole = button.dataset.value;
-            applyFilters();
-        }
+    function toggleRoleChip(button) {
+        const group = button.parentElement;
+        group.querySelectorAll('.glass-chip').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        selectedRole = button.dataset.value;
+        applyFilters();
+    }
 
-        function applyFilters() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const activeSource = document.querySelector('.glass-chip.active[data-filter="source"]')?.dataset.value || 'all';
-            const activeScope = document.querySelector('.glass-chip.active[data-filter="scope"]')?.dataset.value || 'anywhere';
+    function applyFilters() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const activeSource = document.querySelector('.glass-chip.active[data-filter="source"]')?.dataset.value || 'all';
+        const activeScope = document.querySelector('.glass-chip.active[data-filter="scope"]')?.dataset.value || 'all';
 
-            const cards = document.querySelectorAll('.glass-job-card');
-            let visibleCount = 0;
+        const cards = document.querySelectorAll('.glass-job-card');
+        let visibleCount = 0;
 
-            // Strict role matching keywords
-            const roleKeywords = {
-                it_pm: ['it project manager', 'it pm', 'information technology project manager', 'software project manager', 'technical project manager'],
-                sdm: ['service delivery manager', 'service delivery', 'delivery manager', 'sdm'],
-                telecom: ['telecom', 'telecommunications', 'voip', 'telco', 'ran', 'core network'],
-                general_pm: ['project manager', 'program manager', 'scrum master', 'agile project manager']
-            };
+        const roleKeywords = {
+            it_pm: ['it project manager', 'it pm', 'information technology', 'software', 'technical project', 'technical program'],
+            sdm: ['service delivery', 'delivery manager', 'sdm', 'service manager'],
+            telecom: ['telecom', 'telecommunications', 'voip', 'telco', 'network'],
+            general_pm: ['project manager', 'program manager', 'scrum', 'agile', 'project lead', 'pmo']
+        };
 
-            cards.forEach(card => {
-                const title = card.dataset.title;
-                const company = card.dataset.company;
-                const location = card.dataset.location;
-                const source = card.dataset.source;
+        cards.forEach(card => {
+            const title = card.dataset.title;
+            const company = card.dataset.company;
+            const location = card.dataset.location;
+            const source = card.dataset.source;
 
-                // 1. Text Search Match
-                const matchesQuery = title.includes(query) || company.includes(query) || location.includes(query);
-                
-                // 2. Source Match
-                const matchesSource = activeSource === 'all' || source === activeSource;
+            // 1. Text Search Query Match
+            const matchesQuery = !query || title.includes(query) || company.includes(query) || location.includes(query);
+            
+            // 2. Source Filter Match
+            const matchesSource = activeSource === 'all' || source === activeSource;
 
-                // 3. Location / Anywhere Match
-                let matchesLocation = true;
-                if (activeScope === 'anywhere') {
-                    matchesLocation = location.includes('worldwide') || 
-                                      location.includes('anywhere') || 
-                                      location.includes('global') || 
-                                      location.includes('remote') ||
-                                      location.includes('work from anywhere');
-                }
+            // 3. Location Scope Match
+            let matchesLocation = true;
+            if (activeScope === 'anywhere') {
+                matchesLocation = location.includes('worldwide') || 
+                                  location.includes('anywhere') || 
+                                  location.includes('global') || 
+                                  location.includes('remote');
+            }
 
-                // 4. Base Role Filtering (Project Manager, IT PM, SDM, Telecom PM)
-                const isTargetRole = roleKeywords.it_pm.some(k => title.includes(k)) ||
-                                     roleKeywords.sdm.some(k => title.includes(k)) ||
-                                     roleKeywords.telecom.some(k => title.includes(k)) ||
-                                     roleKeywords.general_pm.some(k => title.includes(k));
+            // 4. Role Chip Match
+            let matchesRole = true;
+            if (selectedRole !== 'all') {
+                matchesRole = roleKeywords[selectedRole].some(k => title.includes(k));
+            }
 
-                // 5. Selected Sub-Role Chip Match
-                let matchesSelectedRole = true;
-                if (selectedRole !== 'all') {
-                    matchesSelectedRole = roleKeywords[selectedRole].some(k => title.includes(k));
-                }
-
-                if (matchesQuery && matchesSource && matchesLocation && isTargetRole && matchesSelectedRole) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            document.getElementById('jobCount').innerText = visibleCount;
-        }
-
-        // Run default filter on initial load
-        document.addEventListener('DOMContentLoaded', applyFilters);
-
-        // Floating Back-to-Top Logic
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('visible');
+            if (matchesQuery && matchesSource && matchesLocation && matchesRole) {
+                card.style.display = 'flex';
+                visibleCount++;
             } else {
-                backToTopBtn.classList.remove('visible');
+                card.style.display = 'none';
             }
         });
 
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        document.getElementById('jobCount').innerText = visibleCount;
+    }
+
+    // Run filter on initial load
+    document.addEventListener('DOMContentLoaded', applyFilters);
+
+    // Back-to-Top Floating Glass Button
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
         }
-    </script>
+    });
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 </body>
 </html>
         }
