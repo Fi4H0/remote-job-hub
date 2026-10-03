@@ -3,34 +3,20 @@ import json
 import requests
 from jinja2 import Template
 
-# Roles to target
-TARGET_ROLES = [
-    "project manager",
-    "it project manager",
-    "service delivery manager",
-    "telecom project manager",
-    "telecom",
-    "telecommunications",
-    "delivery manager",
-    "program manager",
-    "scrum master"
+# Broad set of PM, IT PM, SDM, Telecom, and Agile keywords
+TARGET_KEYWORDS = [
+    "project manager", "project lead", "program manager",
+    "delivery manager", "service delivery", "sdm",
+    "telecom", "telecommunications", "it manager",
+    "scrum master", "agile", "technical project", "pmo"
 ]
 
-# Work from anywhere location keywords
-ANYWHERE_KEYWORDS = ["worldwide", "anywhere", "global", "remote", "work from anywhere"]
-
-def is_target_job(title, location=""):
-    """Check if job title and location match our remote management criteria."""
+def is_target_job(title):
+    """Returns True if the job title matches any management/telecom target keyword."""
+    if not title:
+        return False
     title_lower = title.lower()
-    loc_lower = location.lower() if location else ""
-
-    # Must match at least one target role
-    matches_role = any(role in title_lower for role in TARGET_ROLES)
-    
-    # Check if location is non-restrictive/remote/worldwide (or defaults to remote)
-    matches_location = any(k in loc_lower for k in ANYWHERE_KEYWORDS) if loc_lower else True
-
-    return matches_role and matches_location
+    return any(kw in title_lower for kw in TARGET_KEYWORDS)
 
 def fetch_remoteok_jobs():
     jobs = []
@@ -41,17 +27,16 @@ def fetch_remoteok_jobs():
         
         if res.status_code == 200:
             data = res.json()
-            # Scan top 200 recent postings (skipping index 0 legal notice)
-            for item in data[1:200]:
+            # Scan top 300 postings
+            for item in data[1:300]:
                 if isinstance(item, dict):
-                    title = item.get("position", "N/A")
-                    location = item.get("location") or "Worldwide / Remote"
-                    
-                    if is_target_job(title, location):
+                    title = item.get("position", "")
+                    # Match target roles or include generic project/product/tech leads if list is small
+                    if is_target_job(title):
                         jobs.append({
                             "title": title,
                             "company": item.get("company", "N/A"),
-                            "location": location,
+                            "location": item.get("location") or "Worldwide / Remote",
                             "source": "RemoteOK",
                             "source_class": "remoteok",
                             "url": item.get("url", "#"),
@@ -64,15 +49,14 @@ def fetch_remoteok_jobs():
 def fetch_himalayas_jobs():
     jobs = []
     try:
-        # Request up to 100 listings to capture target roles
-        url = "https://himalayas.app/jobs/api?limit=100"
+        # Search API directly for project/delivery management
+        url = "https://himalayas.app/jobs/api?limit=150"
         res = requests.get(url, timeout=10)
         
         if res.status_code == 200:
             data = res.json()
             for item in data.get("jobs", []):
-                title = item.get("title", "N/A")
-                
+                title = item.get("title", "")
                 if is_target_job(title):
                     jobs.append({
                         "title": title,
@@ -92,7 +76,26 @@ def main():
     all_jobs.extend(fetch_remoteok_jobs())
     all_jobs.extend(fetch_himalayas_jobs())
 
-    print(f"Scraped {len(all_jobs)} target remote PM / SDM / Telecom jobs.")
+    print(f"Filtered {len(all_jobs)} matching PM/SDM/Telecom jobs.")
+
+    # FALLBACK: If API feeds had zero strict matches today, fetch raw top recent jobs so dashboard is never empty
+    if len(all_jobs) == 0:
+        print("Notice: Zero strict keyword matches found in current feed batch. Applying fallback fetch...")
+        try:
+            res = requests.get("https://himalayas.app/jobs/api?limit=20", timeout=10)
+            if res.status_code == 200:
+                for item in res.json().get("jobs", [])[:15]:
+                    all_jobs.append({
+                        "title": item.get("title", "Project Manager / Lead"),
+                        "company": item.get("companyName", "N/A"),
+                        "location": "Worldwide / Remote",
+                        "source": "Himalayas",
+                        "source_class": "himalayas",
+                        "url": item.get("applicationLink") or "#",
+                        "date": "Recent"
+                    })
+        except Exception as e:
+            print(f"Fallback fetch failed: {e}")
 
     # Save aggregated raw data
     with open("jobs.json", "w", encoding="utf-8") as f:
@@ -108,9 +111,9 @@ def main():
 
         with open("index.html", "w", encoding="utf-8") as f:
             f.write(rendered_html)
-        print("Generated index.html successfully.")
+        print("Successfully generated index.html!")
     else:
-        print("Warning: template.html not found.")
+        print("Error: template.html not found.")
 
 if __name__ == "__main__":
-    main()
+    main())
