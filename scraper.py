@@ -116,4 +116,4 @@ def main():
         print("Error: template.html not found.")
 
 if __name__ == "__main__":
-    main())
+    main()
