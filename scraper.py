@@ -27,11 +27,9 @@ def fetch_remoteok_jobs():
         
         if res.status_code == 200:
             data = res.json()
-            # Scan top 300 postings
             for item in data[1:300]:
                 if isinstance(item, dict):
                     title = item.get("position", "")
-                    # Match target roles or include generic project/product/tech leads if list is small
                     if is_target_job(title):
                         jobs.append({
                             "title": title,
@@ -49,7 +47,6 @@ def fetch_remoteok_jobs():
 def fetch_himalayas_jobs():
     jobs = []
     try:
-        # Search API directly for project/delivery management
         url = "https://himalayas.app/jobs/api?limit=150"
         res = requests.get(url, timeout=10)
         
@@ -71,14 +68,62 @@ def fetch_himalayas_jobs():
         print(f"Error fetching Himalayas: {e}")
     return jobs
 
+def fetch_hiringcafe_jobs():
+    jobs = []
+    try:
+        # HiringCafe public search endpoint / MCP gateway
+        url = "https://hiringcafe-mcp.vercel.app/api/mcp"
+        payload = {
+            "jsonrpc": "2.0",
+            "method": "tools/call",
+            "params": {
+                "name": "search_jobs",
+                "arguments": {
+                    "query": "Project Manager",
+                    "workplace_type": "Remote"
+                }
+            },
+            "id": 1
+        }
+        headers = {"Content-Type": "application/json", "User-Agent": "Mozilla/5.0"}
+        res = requests.post(url, json=payload, headers=headers, timeout=10)
+        
+        if res.status_code == 200:
+            result_data = res.json()
+            content = result_data.get("result", {}).get("content", [])
+            for item in content:
+                if item.get("type") == "text":
+                    # Parse listings from MCP response text/json
+                    raw_text = item.get("text", "")
+                    try:
+                        parsed_jobs = json.loads(raw_text)
+                        for job in parsed_jobs:
+                            title = job.get("title", "")
+                            if is_target_job(title):
+                                jobs.append({
+                                    "title": title,
+                                    "company": job.get("company_name") or job.get("company") or "N/A",
+                                    "location": job.get("location") or "Worldwide / Remote",
+                                    "source": "HiringCafe",
+                                    "source_class": "hiringcafe",
+                                    "url": job.get("apply_url") or job.get("url") or "https://hiringcafe.com",
+                                    "date": "Recent"
+                                })
+                    except json.JSONDecodeError:
+                        pass
+    except Exception as e:
+        print(f"Error fetching HiringCafe: {e}")
+    return jobs
+
 def main():
     all_jobs = []
     all_jobs.extend(fetch_remoteok_jobs())
     all_jobs.extend(fetch_himalayas_jobs())
+    all_jobs.extend(fetch_hiringcafe_jobs())
 
-    print(f"Filtered {len(all_jobs)} matching PM/SDM/Telecom jobs.")
+    print(f"Filtered {len(all_jobs)} matching PM/SDM/Telecom jobs from all sources.")
 
-    # FALLBACK: If API feeds had zero strict matches today, fetch raw top recent jobs so dashboard is never empty
+    # FALLBACK: If API feeds had zero strict matches, fetch top recent jobs so dashboard is never empty
     if len(all_jobs) == 0:
         print("Notice: Zero strict keyword matches found in current feed batch. Applying fallback fetch...")
         try:
