@@ -71,7 +71,6 @@ def fetch_himalayas_jobs():
 def fetch_hiringcafe_jobs():
     jobs = []
     try:
-        # HiringCafe public search endpoint / MCP gateway
         url = "https://hiringcafe-mcp.vercel.app/api/mcp"
         payload = {
             "jsonrpc": "2.0",
@@ -93,7 +92,6 @@ def fetch_hiringcafe_jobs():
             content = result_data.get("result", {}).get("content", [])
             for item in content:
                 if item.get("type") == "text":
-                    # Parse listings from MCP response text/json
                     raw_text = item.get("text", "")
                     try:
                         parsed_jobs = json.loads(raw_text)
@@ -123,9 +121,9 @@ def main():
 
     print(f"Filtered {len(all_jobs)} matching PM/SDM/Telecom jobs from all sources.")
 
-    # FALLBACK: If API feeds had zero strict matches, fetch top recent jobs so dashboard is never empty
+    # FALLBACK: Ensure dashboard is never empty if API queries yield 0 matches on a given run
     if len(all_jobs) == 0:
-        print("Notice: Zero strict keyword matches found in current feed batch. Applying fallback fetch...")
+        print("Notice: Zero strict keyword matches found. Applying fallback fetch...")
         try:
             res = requests.get("https://himalayas.app/jobs/api?limit=20", timeout=10)
             if res.status_code == 200:
