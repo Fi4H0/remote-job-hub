@@ -33,7 +33,7 @@
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -104,7 +104,7 @@ body {
 }
 
 .glass-filter-bar {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
@@ -184,7 +184,7 @@ body {
    ========================================================================== */
 .jobs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 20px;
 }
 
@@ -213,7 +213,7 @@ body {
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   margin-bottom: 12px;
 }
@@ -224,6 +224,9 @@ body {
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.025em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .job-title {
@@ -261,6 +264,7 @@ body {
   border-radius: 12px;
   text-transform: capitalize;
   display: inline-block;
+  white-space: nowrap;
 }
 
 .badge.remoteok {
@@ -279,12 +283,6 @@ body {
   background: var(--badge-hiringcafe-bg);
   color: var(--badge-hiringcafe-text);
   border: 1px solid var(--badge-hiringcafe-border);
-}
-
-.badge.default {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-main);
-  border: 1px solid var(--card-border);
 }
 
 /* Card Action Footer */
@@ -331,7 +329,7 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--card-border);
